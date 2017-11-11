@@ -77,20 +77,15 @@ def ordinal_multiplot():
     global fig
     for column in ordinal_features:
         fig = plt.figure(figsize=(18, 18))
-
         average_per_survived(column)
-
         boxplot_per_survived(column)
-
         occurence_per_category(column)
-
         percentage_per_category(column)
-
         save_image(column)
 
 
-def save_image(column):
-    image_path = os.path.join(paths['images'], '{}.png'.format(column))
+def save_image(name):
+    image_path = os.path.join(paths['images'], '{}.png'.format(name))
     image_parent_dir = os.path.dirname(image_path)
     if not os.path.isdir(image_parent_dir):
         os.makedirs(image_parent_dir)
@@ -146,9 +141,17 @@ if __name__ == "__main__":
     numerical_features, irrelevant_features, nominal_features, ordinal_features = categorize_features()
 
     survived_countplot()
-
     correlation_matrix()
-
     numerical_multiplot()
-
     ordinal_multiplot()
+
+    for column in nominal_features:
+        fig = plt.figure(figsize=(18, 12))
+
+        ax = sns.countplot(x=column, hue='target_name', data=train_csv, ax=plt.subplot(211))
+        plt.xlabel(column, fontsize=14)
+        plt.ylabel('#Occurences', fontsize=14)
+        plt.legend(loc=1)
+        add_percentage(ax)
+
+        save_image(column)
