@@ -131,6 +131,39 @@ def average_per_survived(column):
     plt.suptitle('Plots for {}'.format(column), fontsize=18)
 
 
+def nominal_multiplot():
+    global fig
+    for column in nominal_features:
+        fig = plt.figure(figsize=(18, 12))
+
+        survived_per_category(column)
+        survived_per_category_pointplot(column)
+        save_image(column)
+
+
+def survived_per_category_pointplot(column):
+    sns.pointplot(x=column, y='Survived', data=train_csv, ax=plt.subplot(212))
+    plt.xlabel(column, fontsize=14)
+    plt.ylabel('Survived Percentage')
+
+
+def survived_per_category(column):
+    ax = sns.countplot(x=column, hue='target_name', data=train_csv, ax=plt.subplot(211))
+    plt.xlabel(column, fontsize=14)
+    plt.ylabel('#Occurences', fontsize=14)
+    plt.legend(loc=1)
+    plt.suptitle('Plots for {}'.format(column))
+    add_percentage(ax)
+
+
+def all_the_plots():
+    survived_countplot()
+    correlation_matrix()
+    numerical_multiplot()
+    ordinal_multiplot()
+    nominal_multiplot()
+
+
 if __name__ == "__main__":
     paths = config_paths()
     sns.set_style('whitegrid')
@@ -140,18 +173,4 @@ if __name__ == "__main__":
 
     numerical_features, irrelevant_features, nominal_features, ordinal_features = categorize_features()
 
-    survived_countplot()
-    correlation_matrix()
-    numerical_multiplot()
-    ordinal_multiplot()
-
-    for column in nominal_features:
-        fig = plt.figure(figsize=(18, 12))
-
-        ax = sns.countplot(x=column, hue='target_name', data=train_csv, ax=plt.subplot(211))
-        plt.xlabel(column, fontsize=14)
-        plt.ylabel('#Occurences', fontsize=14)
-        plt.legend(loc=1)
-        add_percentage(ax)
-
-        save_image(column)
+    all_the_plots()
