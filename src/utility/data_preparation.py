@@ -15,3 +15,5 @@ def load_data(name='train'):
 def train_val_split(data, target='Survived'):
     if target not in data.columns:
         raise KeyError("There is no '{}' column in the data set.")
+    y = data.pop(target)
+    return train_test_split(data, y)
