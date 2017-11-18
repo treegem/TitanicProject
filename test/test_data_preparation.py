@@ -3,6 +3,9 @@ import pytest
 
 from src.utility.data_preparation import load_data, train_val_split, remove_irrelevant, one_hot_encoding
 
+data = None
+global data
+
 
 def test_wrong_data():
     with pytest.raises(FileNotFoundError):
