@@ -1,2 +1,9 @@
 # config is machine specific
 config.ini
+
+# emacs temp files
+*~
+\#*\#
+
+# python bytecode
+**/__pycache__/*
