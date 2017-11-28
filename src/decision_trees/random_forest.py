@@ -7,9 +7,10 @@ def main():
     data_train, data_val, y_train, y_val = cleaned_split_data()
     clf = RandomForestClassifier(n_estimators=100)
     clf.fit(data_train, y_train)
-    score = clf.score(data_val, y_val)
+    score_train = clf.score(data_train, y_train)
+    score_val = clf.score(data_val, y_val)
 
-    print(score)
+    print('score_train:', score_train, '; score_val:', score_val)
 
 
 if __name__ == "__main__":
