@@ -3,8 +3,8 @@ import pytest
 
 from src.utility.data_preparation import load_data, train_val_split, remove_irrelevant, one_hot_encoding
 
-data = None
 global data
+data = None
 
 
 def test_wrong_data():
