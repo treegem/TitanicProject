@@ -7,3 +7,5 @@ config.ini
 
 # python bytecode
 **/__pycache__/*
+.idea/
+resources/images/
