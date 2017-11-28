@@ -1,1 +1,3 @@
 - Score on training data is much higher than on validation data --> remove overfitting
+
+- Rescale/Normalize Data (sklearn has a tool for that)
