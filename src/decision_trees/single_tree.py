@@ -17,7 +17,8 @@ def main():
                   'min_samples_leaf': list(range(1, 10)),
                   'max_features': list(range(1, 10)) + [None],
                   'min_impurity_decrease': uniform(loc=0, scale=1)}
-    clf = randomized_search_cv(clf, data, param_dist, y, n_jobs=4)  # n_jobs = number of cores used, adjust for dual
+    clf = randomized_search_cv(clf, data, parameter_distribution=param_dist, targets=y, n_jobs=4)
+    # n_jobs = number of cores used, adjust for dual or single core
 
     data = load_clean_data()
     data_train, data_val, y_train, y_val = split_data(data)
