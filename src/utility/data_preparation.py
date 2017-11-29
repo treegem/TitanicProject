@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from sklearn.preprocessing import LabelBinarizer, OneHotEncoder, StandardScaler
 from src.utility.config import config_paths as paths
 
 
@@ -60,3 +60,9 @@ def cleaned_split_data():
     one_hot_encoding(data)
     data_train, data_val, y_train, y_val = train_val_split(data)
     return data_train, data_val, y_train, y_val
+
+
+def standard_scale(data):
+    scaler = StandardScaler()
+    data = pd.DataFrame(scaler.fit_transform(data), index=data.index, columns=data.columns)
+    return data
