@@ -1,6 +1,6 @@
 - Score on training data is much higher than on validation data --> remove overfitting
 
-- Use cross validation? Learning set might not be large enough.
+- Use cross validation? Learning set might not be large enough. (Georg started implementing RandomizedSearchCV)
 
 
 # Done
