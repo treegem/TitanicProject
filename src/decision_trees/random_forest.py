@@ -1,10 +1,10 @@
 from sklearn.ensemble import RandomForestClassifier
 
-from src.utility.data_preparation import cleaned_split_data
+from src.utility.data_preparation import split_data
 
 
 def main():
-    data_train, data_val, y_train, y_val = cleaned_split_data()
+    data_train, data_val, y_train, y_val = split_data()
     clf = RandomForestClassifier(n_estimators=100)
     clf.fit(data_train, y_train)
     score_train = clf.score(data_train, y_train)

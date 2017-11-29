@@ -53,13 +53,17 @@ def add_onehot_classes(data, label_enc, target, temp_data):
         data[new_class] = pd.Series(data=temp_data.toarray()[:, i], index=data.index)
 
 
-def cleaned_split_data():
+def split_data(data):
+    data_train, data_val, y_train, y_val = train_val_split(data)
+    return data_train, data_val, y_train, y_val
+
+
+def load_clean_data():
     data = load_data()
     remove_irrelevant(data)
     data = data.dropna()
     one_hot_encoding(data)
-    data_train, data_val, y_train, y_val = train_val_split(data)
-    return data_train, data_val, y_train, y_val
+    return data
 
 
 def standard_scale(data):

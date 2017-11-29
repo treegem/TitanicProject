@@ -6,4 +6,4 @@
 # Done
 
 - Rescale/Normalize Data (sklearn has a tool for that)
-    Used sklearn StandardScaler. Should however not affect DecisionTrees.
+Georg:  Used sklearn StandardScaler. Should however not affect DecisionTrees.
