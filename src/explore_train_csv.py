@@ -5,6 +5,7 @@ import pandas as pd
 import seaborn as sns
 
 from src.utility.config import config_paths
+from utility.data_preparation import load_clean_data, split_data
 
 
 def categorize_features():
@@ -162,6 +163,12 @@ def all_the_plots():
     numerical_multiplot()
     ordinal_multiplot()
     nominal_multiplot()
+    data = load_clean_data()
+    cor_matrix = data.corr().round(2)
+    fig = plt.figure(figsize=(12, 12))
+    sns.heatmap(cor_matrix, annot=True, center=0, cmap=sns.diverging_palette(250, 10, as_cmap=True),
+                ax=plt.subplot(111))
+    save_image('full_correlation_matrix')
 
 
 if __name__ == "__main__":

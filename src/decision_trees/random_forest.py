@@ -11,14 +11,14 @@ def main():
     data = standard_scale(data)
     clf = RandomForestClassifier()
 
-    param_dist = {'n_estimators': randint(low=50, high=10000),
+    param_dist = {'n_estimators': randint(low=50, high=5000),
                   'max_depth': list(range(1, 20)) + [None],
                   'min_samples_split': list(range(2, 10)),
                   'min_samples_leaf': list(range(1, 10)),
                   'max_features': list(range(1, 10)) + [None],
                   'min_impurity_decrease': uniform(loc=0, scale=1)}
     clf = randomized_search_cv(clf, data, parameter_distribution=param_dist,
-                               targets=y, n_jobs=3, n_iter=100, cv=4, verbose=True)
+                               targets=y, n_jobs=3, n_iter=50, cv=3, verbose=True)
 
     data = load_clean_data()
     data_train, data_val, y_train, y_val = split_data(data)
