@@ -6,7 +6,4 @@
 # Done
 
 - Rescale/Normalize Data (sklearn has a tool for that)
-Georg:  Used sklearn StandardScaler. Should however not affect DecisionTrees.
-
-- Use cross validation? Learning set might not be large enough.
-Georg: Implemented RandomizedSearchCV, which is inherently using cross validation
+    Used sklearn StandardScaler. Should however not affect DecisionTrees.
