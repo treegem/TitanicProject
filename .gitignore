@@ -12,3 +12,8 @@ config.ini
 .idea/
 resources/images/
 test/.cache/
+/resources/saved_models/*
+
+# pycache stuff
+src/__pycache__/
+src/utility/__pycache__/
