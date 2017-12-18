@@ -17,3 +17,5 @@ test/.cache/
 # pycache stuff
 src/__pycache__/
 src/utility/__pycache__/
+resources/saved_models/
+test/test_resources/

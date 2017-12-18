@@ -38,10 +38,10 @@ def test_save_model_spec_path():
 
 
 def test_load_model_default_path():
-    clf = load_model(file_name='default_42.pkl')
+    clf = load_model(file_name='default_42')
     assert clf.n_neighbors == 42
 
 
 def test_load_model_spec_path():
-    clf = load_model(file_name='spec_42.pkl', save_dir=path_storage)
+    clf = load_model(file_name='spec_42', save_dir=path_storage)
     assert clf.n_neighbors == 42

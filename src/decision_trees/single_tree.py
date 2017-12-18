@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeClassifier
 from src.utility.data_preparation import load_clean_data, split_data
 from src.utility.data_preparation import standard_scale
 from src.utility.parameter_search import randomized_search_cv
+from src.utility.storage_utility import save_model
 
 
 def main():
@@ -22,9 +23,13 @@ def main():
 
     data = load_clean_data()
     data_train, data_val, y_train, y_val = split_data(data)
-    clf.fit(data_train, y_train)
+    data_train = standard_scale(data_train)
+    data_val = standard_scale(data_val)
+    # clf.fit(data_train, y_train)
     score_train = clf.score(data_train, y_train)
     score_val = clf.score(data_val, y_val)
+
+    save_model(clf, file_name='single_tree')
 
     print('\nFeature importances:')
     for i, column in enumerate(data_train.columns):

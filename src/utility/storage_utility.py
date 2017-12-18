@@ -19,7 +19,7 @@ def save_model(model, file_name, save_dir='default'):
 def load_model(file_name, save_dir='default'):
     if save_dir is 'default':
         save_dir = paths['saved_models']
-    file_path = os.path.join(save_dir, file_name)
+    file_path = os.path.join(save_dir, '{}.pkl'.format(file_name))
     if not os.path.isfile(file_path):
         raise FileNotFoundError
     with open(file_path, 'rb') as model_file:
