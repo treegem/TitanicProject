@@ -4,18 +4,27 @@ import shutil
 
 from src.utility.config import config_paths
 
+paths = config_paths()
+
 
 def save_model(model, file_name, save_dir='default'):
     if save_dir is 'default':
-        save_dir = config_paths()['saved_models']
+        save_dir = paths['saved_models']
     assert_dir_exists(save_dir)
     save_file = os.path.join(save_dir, '{}.pkl'.format(file_name))
     with open(save_file, 'wb') as model_file:
         _pickle.dump(model, model_file)
 
 
-def load_model():
-    pass
+def load_model(file_name, save_dir='default'):
+    if save_dir is 'default':
+        save_dir = paths['saved_models']
+    file_path = os.path.join(save_dir, file_name)
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError
+    with open(file_path, 'rb') as model_file:
+        model = _pickle.load(model_file)
+    return model
 
 
 def assert_dir_exists(dir_path):
