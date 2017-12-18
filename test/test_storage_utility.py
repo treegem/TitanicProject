@@ -37,5 +37,11 @@ def test_save_model_spec_path():
     assert os.path.isfile(os.path.join(path_storage, 'spec_42.pkl'))
 
 
-def test_load_model():
+def test_load_model_default_path():
     clf = load_model(file_name='default_42.pkl')
+    assert clf.n_neighbors == 42
+
+
+def test_load_model_spec_path():
+    clf = load_model(file_name='spec_42.pkl', save_dir=path_storage)
+    assert clf.n_neighbors == 42
