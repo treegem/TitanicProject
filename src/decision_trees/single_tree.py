@@ -1,7 +1,7 @@
 from scipy.stats import uniform
 from sklearn.tree import DecisionTreeClassifier
 
-from src.utility.data_preparation import load_clean_data, split_data
+from src.utility.data_preparation import load_clean_data, load_clean_split_standard_data
 from src.utility.data_preparation import standard_scale
 from src.utility.parameter_search import randomized_search_cv
 from src.utility.storage_utility import save_model
@@ -21,11 +21,7 @@ def main():
     clf = randomized_search_cv(clf, data, parameter_distribution=param_dist,
                                targets=y, n_jobs=3, n_iter=1000, cv=5, verbose=True)
 
-    data = load_clean_data()
-    data_train, data_val, y_train, y_val = split_data(data)
-    data_train = standard_scale(data_train)
-    data_val = standard_scale(data_val)
-    # clf.fit(data_train, y_train)
+    data_train, data_val, y_train, y_val = load_clean_split_standard_data()
     score_train = clf.score(data_train, y_train)
     score_val = clf.score(data_val, y_val)
 
