@@ -17,7 +17,7 @@ def main():
 
     score = calc_score(majority_votes, y)
 
-    print(score)
+    print('Voting score:', score)
 
 
 def predict(data, models_list):
@@ -47,12 +47,13 @@ def calc_score(majority_vote, y):
     return score
 
 
-def load_models():
-    single_tree_clf = load_model('single_tree')
-    random_forest_clf = load_model('random_forest')
-    k_nearest_neighbor_clf = load_model('k_nearest_neighbor')
+def load_models():  # TODO automatically load all models saved to the default model folder
+    models = []
+    models.append(load_model('single_tree'))
+    models.append(load_model('random_forest'))
+    models.append(load_model('k_nearest_neighbor'))
 
-    return [single_tree_clf, random_forest_clf, k_nearest_neighbor_clf]
+    return models
 
 
 if __name__ == '__main__':
