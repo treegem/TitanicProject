@@ -21,7 +21,8 @@ def train_val_split(data, target='Survived'):
 
 def assert_target(data, target):
     if target not in data.columns:
-        raise KeyError("There is no '{}' column in the data set.")
+        raise KeyError(
+            "There is no '{}' column in the data set.".format(target))
 
 
 def remove_irrelevant(data, targets=['Name', 'Ticket', 'Cabin']):
@@ -61,6 +62,7 @@ def split_data(data):
 def load_clean_data():
     data = load_data()
     remove_irrelevant(data)
+    # drop incomplete entries
     data = data.dropna()
     one_hot_encoding(data)
     return data
