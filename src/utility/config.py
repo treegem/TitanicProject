@@ -10,5 +10,8 @@ def load_config():
     return config
 
 
-def config_paths():
-    return load_config()['paths']
+def config_paths(resources='resources'):
+    paths = load_config()['paths']
+    paths['images'] = os.path.join(paths[resources], 'images')
+    paths['saved_models'] = os.path.join(paths[resources], 'saved_models')
+    return paths

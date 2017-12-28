@@ -5,7 +5,7 @@ import pandas as pd
 import seaborn as sns
 
 from src.utility.config import config_paths
-from utility.data_preparation import load_clean_data, split_data
+from src.utility.data_preparation import load_clean_data
 
 
 def categorize_features():

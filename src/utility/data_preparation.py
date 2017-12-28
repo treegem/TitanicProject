@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder, StandardScaler
+
 from src.utility.config import config_paths as paths
 
 
@@ -72,3 +73,11 @@ def standard_scale(data):
     scaler = StandardScaler()
     data = pd.DataFrame(scaler.fit_transform(data), index=data.index, columns=data.columns)
     return data
+
+
+def load_clean_split_standard_data():
+    data = load_clean_data()
+    data_train, data_val, y_train, y_val = split_data(data)
+    data_train = standard_scale(data_train)
+    data_val = standard_scale(data_val)
+    return data_train, data_val, y_train, y_val
