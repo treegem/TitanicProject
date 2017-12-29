@@ -11,12 +11,13 @@ def main():
     data = load_clean_data()
     y = data.pop('Survived')
     data = standard_scale(data)
+    n_features = len(data.columns)
     clf = DecisionTreeClassifier()
 
     param_dist = {'max_depth': list(range(1, 50)) + [None],
                   'min_samples_split': list(range(2, 10)),
                   'min_samples_leaf': list(range(1, 10)),
-                  'max_features': list(range(1, 10)) + [None],
+                  'max_features': list(range(1, n_features)) + [None],
                   'min_impurity_decrease': uniform(loc=0, scale=1)}
     clf = randomized_search_cv(clf, data, parameter_distribution=param_dist,
                                targets=y, n_jobs=3, n_iter=1000, cv=5,
