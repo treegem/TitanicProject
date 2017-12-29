@@ -60,12 +60,17 @@ def split_data(data):
     return data_train, data_val, y_train, y_val
 
 
-def load_clean_data():
+def load_clean_data(to_drop=['Sex_male', 'Embarked_Q']):
     data = load_data()
     remove_irrelevant(data)
     # drop incomplete entries
     data = data.dropna()
     one_hot_encoding(data)
+    # drop features that are fully correlated/anticorrelated to some other
+    # feature
+    for target in to_drop:
+        assert_target(data, target)
+        data.pop(target)
     return data
 
 
